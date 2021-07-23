@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import VidMain from "./Vidmain";
-import Vidlist from "../components/Vidlist";
+import Vidmain from "./Vidmain";
+import Vidlist from "./Vidlist";
 import yt from "../api/Yt";
 import "../css/app.css";
 
 const App = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [videos, setVideos] = React.useState([]);
-  const [current, setCurrent] = React.useState({});
+  const [current, setCurrent] = React.useState(null);
 
   useEffect(() => {
     const fetchApi = async function () {
@@ -31,7 +31,7 @@ const App = () => {
     };
     const timeout = setTimeout(() => {
       if (searchValue) fetchApi();
-    }, 500);
+    }, 1000);
 
     return () => {
       clearTimeout(timeout);
@@ -45,7 +45,7 @@ const App = () => {
 
   const showDetail = (video) => {
     console.log(video);
-    // setCurrent(video);
+    setCurrent(video);
   };
 
   return (
@@ -60,8 +60,8 @@ const App = () => {
         />
       </div>
       <div className="section-below">
-        {/* <VidMain current={current} /> */}
-        <Vidlist videos={videos} current={showDetail()} />
+        <Vidmain current={current} />
+        <Vidlist videos={videos} current={showDetail} />
       </div>
     </div>
   );
