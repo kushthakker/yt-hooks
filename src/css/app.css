@@ -23,7 +23,7 @@ input {
   box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.62);
   height: 58px;
   transform: skew(-3deg, 1deg);
-  font-family: "Knewave", cursive;
+  font-family: cursive;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
