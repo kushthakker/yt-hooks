@@ -1,1 +1,1 @@
- ## A Youtube app which shows 5 best results to choose and play. Createed in create-react-app.
+ ## A Youtube app which shows 5 best results to choose and play. Created in create-react-app.
