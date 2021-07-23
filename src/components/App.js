@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Vidmain from "./Vidmain";
 import Vidlist from "./Vidlist";
 import yt from "../api/Yt";
@@ -8,10 +8,13 @@ const App = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [videos, setVideos] = React.useState([]);
   const [current, setCurrent] = React.useState(null);
+  const show = useRef();
 
   useEffect(() => {
     const fetchApi = async function () {
       try {
+        console.log(show);
+        show.current.style.display = "block";
         const req = await yt.get("/search", {
           params: {
             q: searchValue,
@@ -22,9 +25,9 @@ const App = () => {
           throw new Error(`Please search another query!`);
         }
         const data = req.data.items;
-
         setVideos(data);
         setCurrent(data[0]);
+        show.current.style.display = "none";
       } catch (err) {
         alert(err);
       }
@@ -71,6 +74,13 @@ const App = () => {
             <li h="">h</li>
           </ul>
         </label>
+      </div>
+      <div
+        className="ui active inverted dimmer"
+        ref={show}
+        style={{ display: "none" }}
+      >
+        <div className="ui text loader"></div>
       </div>
       <div className="ui grid">
         <div className="ui row">
