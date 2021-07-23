@@ -22,7 +22,6 @@ const App = () => {
         });
 
         if (req.data.items.length === 0) {
-          show.current.style.display = "none";
           throw new Error(`Please search another query!`);
         }
         const data = req.data.items;
@@ -31,6 +30,7 @@ const App = () => {
         show.current.style.display = "none";
       } catch (err) {
         alert(err);
+        show.current.style.display = "none";
       }
     };
     const timeout = setTimeout(() => {
