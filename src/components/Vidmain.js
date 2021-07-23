@@ -1,7 +1,6 @@
 import React from "react";
 
 const VidMain = ({ current }) => {
-  console.log(current);
   if (current !== null) {
     return (
       <div>

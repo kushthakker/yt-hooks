@@ -17,12 +17,12 @@ const App = () => {
             q: searchValue,
           },
         });
-        console.log(req);
+
         if (req.data.items.length === 0) {
           throw new Error(`Please search another query!`);
         }
         const data = req.data.items;
-        console.log(data);
+
         setVideos(data);
         setCurrent(data[0]);
       } catch (err) {
@@ -31,6 +31,10 @@ const App = () => {
     };
     const timeout = setTimeout(() => {
       if (searchValue) fetchApi();
+      else {
+        setCurrent(null);
+        setVideos([]);
+      }
     }, 1000);
 
     return () => {
@@ -44,20 +48,29 @@ const App = () => {
   };
 
   const showDetail = (video) => {
-    console.log("current", video);
     setCurrent(video);
   };
 
   return (
     <div className="app">
-      <div className="input">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="search"
-          onChange={onInputChange}
-          value={searchValue}
-        />
+      <div>
+        <label>
+          <input
+            type="text"
+            className="search"
+            onChange={onInputChange}
+            value={searchValue}
+            required
+          />
+          <ul>
+            <li s="">s</li>
+            <li e="">e</li>
+            <li a="">a</li>
+            <li r="">r</li>
+            <li c="">c</li>
+            <li h="">h</li>
+          </ul>
+        </label>
       </div>
       <div className="ui grid">
         <div className="ui row">
@@ -65,7 +78,11 @@ const App = () => {
             <Vidmain current={current} />
           </div>
           <div className="five wide column">
-            <Vidlist videos={videos} current={showDetail} />
+            <Vidlist
+              videos={videos}
+              onVideoSelect={showDetail}
+              current={current}
+            />
           </div>
         </div>
       </div>
