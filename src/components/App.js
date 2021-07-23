@@ -22,6 +22,7 @@ const App = () => {
         });
 
         if (req.data.items.length === 0) {
+          show.current.style.display = "none";
           throw new Error(`Please search another query!`);
         }
         const data = req.data.items;
