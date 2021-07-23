@@ -1,6 +1,8 @@
 .app {
   display: grid;
-  grid-template-rows: 12rem 1fr;
-  align-items: center;
   justify-items: center;
+  align-items: center;
+  grid-template-rows: 150px auto;
+  gap: 20px;
+  padding: 0 5rem;
 }

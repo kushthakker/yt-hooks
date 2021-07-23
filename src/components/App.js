@@ -44,7 +44,7 @@ const App = () => {
   };
 
   const showDetail = (video) => {
-    console.log(video);
+    console.log("current", video);
     setCurrent(video);
   };
 
@@ -59,9 +59,15 @@ const App = () => {
           value={searchValue}
         />
       </div>
-      <div className="section-below">
-        <Vidmain current={current} />
-        <Vidlist videos={videos} current={showDetail} />
+      <div className="ui grid">
+        <div className="ui row">
+          <div className="eleven wide column">
+            <Vidmain current={current} />
+          </div>
+          <div className="five wide column">
+            <Vidlist videos={videos} current={showDetail} />
+          </div>
+        </div>
       </div>
     </div>
   );
